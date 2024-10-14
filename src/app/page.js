@@ -11,8 +11,8 @@ export default function Home() {
 
   const activeCards = cards.filter((card) => card.active);
   const inActiveCards = cards.filter((card) => !card.active);
-  console.log("Active cards:", activeCards.length);
-  console.log("Inactive cards", inActiveCards.length);
+  console.log("Active cards:", activeCards);
+  console.log("Inactive cards", inActiveCards);
 
   return (
     <div

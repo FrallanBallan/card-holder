@@ -16,9 +16,48 @@ export const creditCardSlice = createSlice({
       console.log("Action.payload", action.payload);
       localStorage.setItem("cards", JSON.stringify(state.cards));
     },
+    editCard: (state, action) => {
+      const { id, newName, newHolder, newNumber, newCvv, newValid } =
+        action.payload;
+      state.cards = state.cards.map((card) =>
+        card.uniqueId === id
+          ? {
+              ...card,
+              validThru: newValid,
+              bankName: newName,
+              cardHolder: newHolder,
+              cardNumber: newNumber,
+              cvv: newCvv,
+            }
+          : card
+      );
+      localStorage.setItem("cards", JSON.stringify(state.cards));
+      console.log(state.cards);
+    },
+    toggleStatus: (state, action) => {
+      const { id } = action.payload;
+      console.log("Toggling status for card with id:", id);
+      state.cards = state.cards.map((card) => {
+        if (card.uniqueId === id) {
+          console.log("Before toggle:", card.active);
+          const updatedCard = { ...card, active: !card.active };
+          console.log("After toggle:", updatedCard.active);
+          return updatedCard;
+        }
+        return card;
+      });
+      localStorage.setItem("cards", JSON.stringify(state.cards));
+    },
+    deleteCard: (state, action) => {
+      const { id } = action.payload;
+
+      state.cards = state.cards.filter((card) => card.uniqueId !== id);
+      localStorage.setItem("cards", JSON.stringify(state.cards));
+    },
   },
 });
 
-export const { addCard } = creditCardSlice.actions;
+export const { addCard, editCard, toggleStatus, deleteCard } =
+  creditCardSlice.actions;
 
 export default creditCardSlice.reducer;

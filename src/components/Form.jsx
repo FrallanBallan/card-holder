@@ -1,14 +1,31 @@
+import { toggleStatus } from "@/redux/cardSlice";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { useDispatch } from "react-redux";
 
-const Form = () => {
+const Form = ({ editedCard, handleChanges, handleInputChange }) => {
+  console.log(editedCard);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleStatus = () => {
+    dispatch(toggleStatus({ id: editedCard.uniqueId }));
+    router.push("/");
+  };
   return (
     <div>
-      <form className={"flex flex-col justify-between gap-4"}>
+      <form
+        onSubmit={handleChanges}
+        className={"flex flex-col justify-between gap-4"}
+      >
         <div className={"text-start"}>
           <label htmlFor="cardNumber">Card Number:</label>
           <input
-            type="text"
+            name="cardNumber"
             id="cardNumber"
+            onChange={handleInputChange}
+            value={editedCard.cardNumber}
+            type="text"
             placeholder="Enter Card Number"
             className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             maxLength="19" // Max length: 16 digits + 3 spaces
@@ -17,7 +34,10 @@ const Form = () => {
         <div className={"text-start"}>
           <label htmlFor="cardHolder">Card Holder:</label>
           <input
+            onChange={handleInputChange}
+            value={editedCard.cardHolder}
             type="text"
+            name="cardHolder"
             id="cardHolder"
             placeholder="Enter Card Holder"
             className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -29,8 +49,11 @@ const Form = () => {
               Valid Thru:
             </label>
             <input
+              onChange={handleInputChange}
+              value={editedCard.validThru}
               placeholder="mm/yy"
               type="text"
+              name="validThru"
               id="validThru"
               required
               className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -41,8 +64,11 @@ const Form = () => {
               CCV:
             </label>
             <input
+              onChange={handleInputChange}
+              value={editedCard.cvv}
               placeholder="xxx"
               type="text"
+              name="cvv"
               id="cvv"
               required
               className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -54,7 +80,9 @@ const Form = () => {
             Chose Bank:
           </label>
           <select
-            name="bankVendor"
+            onChange={handleInputChange}
+            value={editedCard.bankName}
+            name="bankName"
             id="bank"
             required
             className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -73,6 +101,15 @@ const Form = () => {
             }
           >
             Complete Card
+          </button>
+          <button
+            onClick={handleStatus}
+            className={
+              "w-full bg-slate-400 hover:bg-slate-500 text-black-700 font-semibold hover:text-white py-2 px-4 border border-slate-500 hover:border-transparent rounded  "
+            }
+          >
+            {" "}
+            {editedCard.active ? "Freeze Card" : "Activate Card"}
           </button>
         </div>
       </form>

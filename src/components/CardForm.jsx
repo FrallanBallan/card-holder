@@ -115,7 +115,7 @@ const CardForm = () => {
           </label>
           <select
             onChange={(e) => setBank(e.target.value)}
-            name="bankVendor"
+            name="bankName"
             id="bank"
             required
             className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
