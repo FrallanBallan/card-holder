@@ -1,9 +1,19 @@
+"use client";
 import Button from "@/components/Button";
 import CardContainer from "@/components/CardContainer";
 import Cog from "@/components/Cog";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const cards = useSelector((store) => store.cards.cards);
+  console.log("Cards in state:", cards);
+
+  const activeCards = cards.filter((card) => card.active);
+  const inActiveCards = cards.filter((card) => !card.active);
+  console.log("Active cards:", activeCards.length);
+  console.log("Inactive cards", inActiveCards.length);
+
   return (
     <div
       className={
@@ -12,20 +22,23 @@ export default function Home() {
     >
       <main
         className={
-          "relative text-center h-[97vh] w-full max-w-sm bg-slate-400 p-6 rounded-lg shadow-2xl flex flex-col justify-between"
+          "relative text-center h-[97vh] w-full max-w-sm bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-300 ease-in-out"
         }
       >
         <div className={"flex flex-col justify-start grow"}>
           <Cog />
 
           <div>
-            <h3 className={"text-start font-bold"}>Active Cards - startpage</h3>
-            <CardContainer />
+            <h4 className={"text-start font-bold text-gray-700"}>
+              Active Cards
+            </h4>
+            <CardContainer cards={activeCards} />
           </div>
-
           <div className={"mt-4"}>
-            <h3 className={"text-start font-bold"}>Inactive Cards</h3>
-            <CardContainer />
+            <h4 className={"text-start font-bold text-gray-700"}>
+              Inactive Cards
+            </h4>
+            <CardContainer cards={inActiveCards} />
           </div>
         </div>
         <div>

@@ -1,19 +1,42 @@
+"use client";
 import React from "react";
 import Card from "./Card";
 import GhostCard from "./GhostCard";
-import Cog from "./Cog";
+import { useRouter } from "next/navigation";
 
-const CardContainer = () => {
+const CardContainer = ({ cards }) => {
+  const router = useRouter();
+  const handleCardRoute = (uniqueId) => {
+    router.push(`/cards/${uniqueId}`);
+  };
+  if (!cards || cards.length === 0) {
+    return (
+      <div
+        className={
+          "flex flex-col overflow-y-auto h-60 mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
+        }
+      >
+        <GhostCard />
+      </div>
+    );
+  }
   return (
     <>
       <div
         className={
-          "flex flex-col overflow-y-auto h-60 mt-4 gap-2 scrollbar-hide"
+          "flex flex-col overflow-y-auto h-60 mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
         }
       >
-        <Card />
-        <Card />
-        {/* Add ghost chard if no card */}
+        {cards.map((card) => {
+          console.log(card.uniqueId);
+          return (
+            <Card
+              key={card.uniqueId}
+              {...card}
+              onClick={() => handleCardRoute(card.uniqueId)}
+            />
+          );
+        })}
       </div>
     </>
   );
