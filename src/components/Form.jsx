@@ -1,69 +1,12 @@
-"use client";
 import React from "react";
-import Card from "./Card";
-import Button from "./Button";
-import Cog from "./Cog";
-import Link from "next/link";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addCard } from "@/redux/cardSlice";
-import { useRouter } from "next/navigation";
 
-const CardForm = () => {
-  const [bank, setBank] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardHolder, setCardHolder] = useState("Frans Codemaster");
-  const [valid, setValid] = useState("MM/YY");
-  const [cvv, setCvv] = useState("XXX");
-
-  const dispatch = useDispatch();
-  const router = useRouter();
-
-  const handleCard = (e) => {
-    e.preventDefault();
-    let newCard = {
-      bankName: bank,
-      cardNumber,
-      cardHolder,
-      validThru: valid,
-      cvv,
-      active: false,
-      uniqueId: Date.now(),
-    };
-    dispatch(addCard(newCard));
-    router.push("/");
-  };
-  const handleCardNumberChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove all non-digit characters
-    if (value.length > 16) value = value.slice(0, 16); // Limit to 16 digits
-
-    // Format the number in 4+4+4+4 format
-    const formattedValue = value.replace(/(.{4})/g, "$1 ").trim(); // Add space after every 4 digits
-
-    setCardNumber(formattedValue);
-  };
-
+const Form = () => {
   return (
-    <div className={"h-full flex flex-col justify-between items-center"}>
-      <div className="mt-6 w-full">
-        <Card
-          bankName={bank}
-          cardNumber={cardNumber}
-          cardHolder={cardHolder}
-          validThru={valid}
-          cvv={cvv}
-        />
-      </div>
-
-      <form
-        className={"flex flex-col justify-between gap-4"}
-        onSubmit={handleCard}
-      >
+    <div>
+      <form className={"flex flex-col justify-between gap-4"}>
         <div className={"text-start"}>
           <label htmlFor="cardNumber">Card Number:</label>
           <input
-            value={cardNumber}
-            onChange={handleCardNumberChange}
             type="text"
             id="cardNumber"
             placeholder="Enter Card Number"
@@ -74,7 +17,6 @@ const CardForm = () => {
         <div className={"text-start"}>
           <label htmlFor="cardHolder">Card Holder:</label>
           <input
-            onChange={(e) => setCardHolder(e.target.value)}
             type="text"
             id="cardHolder"
             placeholder="Enter Card Holder"
@@ -87,7 +29,6 @@ const CardForm = () => {
               Valid Thru:
             </label>
             <input
-              onChange={(e) => setValid(e.target.value)}
               placeholder="mm/yy"
               type="text"
               id="validThru"
@@ -100,7 +41,6 @@ const CardForm = () => {
               CCV:
             </label>
             <input
-              onChange={(e) => setCvv(e.target.value)}
               placeholder="xxx"
               type="text"
               id="cvv"
@@ -114,7 +54,6 @@ const CardForm = () => {
             Chose Bank:
           </label>
           <select
-            onChange={(e) => setBank(e.target.value)}
             name="bankVendor"
             id="bank"
             required
@@ -141,4 +80,4 @@ const CardForm = () => {
   );
 };
 
-export default CardForm;
+export default Form;

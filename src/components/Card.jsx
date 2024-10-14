@@ -11,8 +11,6 @@ const Card = ({
   uniqueId,
   onClick,
 }) => {
-  console.log(cardNumber);
-
   return (
     <>
       <div

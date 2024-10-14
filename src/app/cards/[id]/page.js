@@ -1,5 +1,7 @@
 "use client";
 import Card from "@/components/Card";
+import CardForm from "@/components/CardForm";
+import Form from "@/components/Form";
 import { useParams } from "next/navigation";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -30,6 +32,7 @@ const CardId = () => {
             <div>Card no found</div>
           )}
         </div>
+        <Form />
       </main>
     </div>
   );
