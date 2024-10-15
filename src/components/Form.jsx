@@ -25,6 +25,7 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
             id="cardNumber"
             onChange={handleInputChange}
             value={editedCard.cardNumber}
+            disabled={editedCard.active}
             type="text"
             placeholder="Enter Card Number"
             className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -36,6 +37,7 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
           <input
             onChange={handleInputChange}
             value={editedCard.cardHolder}
+            disabled={editedCard.active}
             type="text"
             name="cardHolder"
             id="cardHolder"
@@ -51,12 +53,14 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
             <input
               onChange={handleInputChange}
               value={editedCard.validThru}
+              disabled={editedCard.active}
               placeholder="mm/yy"
-              type="text"
+              type="date"
               name="validThru"
               id="validThru"
               required
               className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className={"flex flex-col w-1/2"}>
@@ -66,7 +70,9 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
             <input
               onChange={handleInputChange}
               value={editedCard.cvv}
+              disabled={editedCard.active}
               placeholder="xxx"
+              maxLength={3}
               type="text"
               name="cvv"
               id="cvv"
@@ -82,6 +88,7 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
           <select
             onChange={handleInputChange}
             value={editedCard.bankName}
+            disabled={editedCard.active}
             name="bankName"
             id="bank"
             required

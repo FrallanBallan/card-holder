@@ -36,3 +36,32 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* styles.css */
+@media (min-width: 640px) {
+  /* sm */
+  .responsive-height {
+    height: 60vh; /* Adjust height for small screens */
+  }
+}
+
+@media (min-width: 768px) {
+  /* md */
+  .responsive-height {
+    height: 50vh; /* Adjust height for medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  /* lg */
+  .responsive-height {
+    height: 40vh; /* Adjust height for large screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  /* xl */
+  .responsive-height {
+    height: 30vh; /* Adjust height for extra large screens */
+  }
+}

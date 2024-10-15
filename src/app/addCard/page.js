@@ -13,7 +13,7 @@ const addCard = () => {
     >
       <main
         className={
-          "relative text-center h-[97vh] w-full max-w-sm bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-300 ease-in-out"
+          "relative text-center min-h-[844px] max-h-[894px] w-[390px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
         }
       >
         <Cog />

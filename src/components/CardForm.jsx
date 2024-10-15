@@ -74,7 +74,14 @@ const CardForm = () => {
         <div className={"text-start"}>
           <label htmlFor="cardHolder">Card Holder:</label>
           <input
-            onChange={(e) => setCardHolder(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^[a-zA-Z\s]*$/.test(value)) {
+                setCardHolder(value);
+              } else {
+                alert("Only letters and spaces allowed");
+              }
+            }}
             type="text"
             id="cardHolder"
             placeholder="Enter Card Holder"
@@ -89,10 +96,11 @@ const CardForm = () => {
             <input
               onChange={(e) => setValid(e.target.value)}
               placeholder="mm/yy"
-              type="text"
+              type="date"
               id="validThru"
               required
               className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className={"flex flex-col w-1/2"}>
@@ -104,6 +112,7 @@ const CardForm = () => {
               placeholder="xxx"
               type="text"
               id="cvv"
+              maxLength={3}
               required
               className="w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />

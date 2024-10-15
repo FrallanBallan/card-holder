@@ -11,21 +11,25 @@ import { useDispatch, useSelector } from "react-redux";
 const CardId = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const cards = useSelector((store) => store.cards.cards);
   const { id } = useParams();
-  // console.log(cards);
-  const cardToChange = cards.find((card) => card.uniqueId === Number(id)); //!!BYT NAMN PÅ CARD.ID!!!
-  // console.log(cardToChange);
+  const cards = useSelector((store) => store.cards.cards);
+  const cardToChange = cards.find((card) => card.uniqueId === Number(id));
 
   const [editedCard, setEditedCard] = useState({
-    uniqueId: cardToChange.uniqueId,
-    cardNumber: cardToChange.cardNumber, // set cardNumber from cardTOChange
-    cardHolder: cardToChange.cardHolder,
-    validThru: cardToChange.validThru,
-    cvv: cardToChange.cvv,
-    bankName: cardToChange.bankName,
-    active: cardToChange.active,
+    uniqueId: cardToChange?.uniqueId || "",
+    cardNumber: cardToChange?.cardNumber || "",
+    cardHolder: cardToChange?.cardHolder || "",
+    validThru: cardToChange?.validThru || "",
+    cvv: cardToChange?.cvv || "",
+    bankName: cardToChange?.bankName || "",
+    active: cardToChange?.active || false,
+    //This is the autofill in inputfields
   });
+  useEffect(() => {
+    if (!cardToChange) {
+      router.push("/");
+    }
+  }, [cardToChange, router]);
 
   const handleChanges = (e) => {
     e.preventDefault();
@@ -41,15 +45,37 @@ const CardId = () => {
       })
     );
     console.log(editedCard);
+    router.push("/");
   };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target; //deconstruct name och value från targeted input
+  //   setEditedCard((prev) => ({ ...prev, [name]: value })); // hittar name as (key) för att ändra value
+  //   //uppdatera editedCard state med det nya värdet från ett specifikt input field
+  // };
   const handleInputChange = (e) => {
-    const { name, value } = e.target; //deconstruct name och value från targeted input
-    setEditedCard((prev) => ({ ...prev, [name]: value })); // hittar name as (key) för att ändra value
-    //uppdatera editedCard state med det nya värdet från ett specifikt input field
+    const { name, value } = e.target;
+
+    // Check if the input is for the card holder and validate it
+    if (name === "cardHolder") {
+      // Only allow letters and spaces
+      if (/^[a-zA-Z\s]*$/.test(value)) {
+        setEditedCard((prev) => ({ ...prev, [name]: value }));
+      } else {
+        alert("Only letters and spaces are allowed in the card holder's name.");
+        return; // Early return to prevent further state update
+      }
+    } else {
+      // For other fields, just update the state as normal
+      setEditedCard((prev) => ({ ...prev, [name]: value }));
+    }
   };
   const handleDeleteCard = () => {
-    dispatch(deleteCard({ id: cardToChange.uniqueId }));
-    router.push("/");
+    if (cardToChange && cardToChange.active === false) {
+      dispatch(deleteCard({ id: cardToChange.uniqueId }));
+      router.push("/");
+    } else {
+      alert("No card / Deactivate card before delete");
+    }
   };
 
   return (
@@ -60,11 +86,11 @@ const CardId = () => {
     >
       <main
         className={
-          "relative text-center h-[97vh] w-full max-w-sm bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-300 ease-in-out"
+          "relative text-center min-h-[844px] max-h-[894px] w-[390px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
         }
       >
         <div>
-          {id}
+          {/* {id} */}
           <Button text={"Delete Card"} onClick={handleDeleteCard} />
 
           {cardToChange ? (

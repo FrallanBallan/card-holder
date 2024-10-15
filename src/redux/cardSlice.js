@@ -1,3 +1,5 @@
+import { routeHome } from "@/utils/homeRouting";
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const savedCards = JSON.parse(localStorage.getItem("cards")) || [];
@@ -16,6 +18,7 @@ export const creditCardSlice = createSlice({
       console.log("Action.payload", action.payload);
       localStorage.setItem("cards", JSON.stringify(state.cards));
     },
+    //Edit - Ska bara funka om det är inaktivt
     editCard: (state, action) => {
       const { id, newName, newHolder, newNumber, newCvv, newValid } =
         action.payload;
@@ -48,11 +51,13 @@ export const creditCardSlice = createSlice({
       });
       localStorage.setItem("cards", JSON.stringify(state.cards));
     },
+    //Delete - bara om kortet är inaktivt
     deleteCard: (state, action) => {
       const { id } = action.payload;
 
       state.cards = state.cards.filter((card) => card.uniqueId !== id);
       localStorage.setItem("cards", JSON.stringify(state.cards));
+      // routeHome();
     },
   },
 });
