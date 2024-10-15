@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import CardContainer from "@/components/CardContainer";
 import Cog from "@/components/Cog";
+import Wrapper from "@/components/Wrapper";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
@@ -11,15 +12,9 @@ export default function Home() {
 
   const activeCards = cards.filter((card) => card.active);
   const inActiveCards = cards.filter((card) => !card.active);
-  console.log("Active cards:", activeCards);
-  console.log("Inactive cards", inActiveCards);
 
   return (
-    <div
-      className={
-        "min-h-screen bg-slate-700 flex flex-col justify-center items-center"
-      }
-    >
+    <Wrapper>
       <main
         className={
           "relative text-center h-[80vh] max-h-[894px] w-[90vw] max-w-[400px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
@@ -49,6 +44,6 @@ export default function Home() {
           {/* button ska ta migt ill /settings */}
         </div>
       </main>
-    </div>
+    </Wrapper>
   );
 }

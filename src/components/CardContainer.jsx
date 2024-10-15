@@ -28,7 +28,6 @@ const CardContainer = ({ cards }) => {
         }
       >
         {cards.map((card) => {
-          console.log(card.uniqueId);
           return (
             <Card
               key={card.uniqueId}

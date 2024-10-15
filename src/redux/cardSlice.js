@@ -59,10 +59,14 @@ export const creditCardSlice = createSlice({
       localStorage.setItem("cards", JSON.stringify(state.cards));
       // routeHome();
     },
+    deleteAll: (state) => {
+      state.cards = [];
+      localStorage.setItem("cards", JSON.stringify(state.cards));
+    },
   },
 });
 
-export const { addCard, editCard, toggleStatus, deleteCard } =
+export const { addCard, editCard, toggleStatus, deleteCard, deleteAll } =
   creditCardSlice.actions;
 
 export default creditCardSlice.reducer;

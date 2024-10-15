@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import CardForm from "@/components/CardForm";
 import Form from "@/components/Form";
+import Wrapper from "@/components/Wrapper";
 import { deleteCard, editCard } from "@/redux/cardSlice";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -79,11 +80,7 @@ const CardId = () => {
   };
 
   return (
-    <div
-      className={
-        "h-screen bg-slate-700 flex flex-col justify-center items-center"
-      }
-    >
+    <Wrapper>
       <main
         className={
           "relative text-center h-[80vh] max-h-[894px] w-[90vw] max-w-[400px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
@@ -109,7 +106,7 @@ const CardId = () => {
           handleInputChange={handleInputChange}
         />
       </main>
-    </div>
+    </Wrapper>
   );
 };
 

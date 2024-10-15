@@ -1,7 +1,9 @@
 import Button from "@/components/Button";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const settings = () => {
+  const dispatch = useDispatch();
   return (
     <div
       className={
