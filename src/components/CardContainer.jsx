@@ -13,7 +13,7 @@ const CardContainer = ({ cards }) => {
     return (
       <div
         className={
-          "flex flex-col overflow-y-auto h-72 mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
+          "flex flex-col overflow-y-auto h-[40vh] mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
         }
       >
         <GhostCard />
@@ -24,7 +24,7 @@ const CardContainer = ({ cards }) => {
     <>
       <div
         className={
-          "flex flex-col overflow-y-auto h-72 mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
+          "flex flex-col overflow-y-auto h-[25vh] mt-2 gap-2 scrollbar-hide rounded-md bg-opacity-80"
         }
       >
         {cards.map((card) => {
