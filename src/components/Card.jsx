@@ -29,6 +29,7 @@ const Card = ({
               alt="Handelsbanken Logo"
               width={40} // Specify width
               height={40} // Specify height
+              style={{ borderRadius: "10%" }}
             />
           )) ||
             (bankName === "Swedbank" && (
@@ -37,6 +38,7 @@ const Card = ({
                 alt="Handelsbanken Logo"
                 width={40} // Specify width
                 height={40} // Specify height
+                style={{ borderRadius: "10%" }}
               />
             )) ||
             (bankName === "Nordea" && (
@@ -45,6 +47,7 @@ const Card = ({
                 alt="Handelsbanken Logo"
                 width={40} // Specify width
                 height={40} // Specify height
+                style={{ borderRadius: "10%" }}
               />
             ))}
 

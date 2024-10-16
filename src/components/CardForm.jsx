@@ -45,7 +45,7 @@ const CardForm = () => {
 
   return (
     <div className={"h-full flex flex-col justify-between items-center"}>
-      <div className="mt-6 w-full">
+      <div className="mt-8 w-full">
         <Card
           bankName={bank}
           cardNumber={cardNumber}

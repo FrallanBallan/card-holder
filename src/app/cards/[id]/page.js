@@ -2,7 +2,9 @@
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import CardForm from "@/components/CardForm";
+import Cog from "@/components/Cog";
 import Form from "@/components/Form";
+import HomeIcon from "@/components/HomeIcon";
 import Wrapper from "@/components/Wrapper";
 import { deleteCard, editCard } from "@/redux/cardSlice";
 import { useParams, useRouter } from "next/navigation";
@@ -86,9 +88,10 @@ const CardId = () => {
           "relative text-center h-[80vh] max-h-[894px] w-[90vw] max-w-[400px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
         }
       >
+        <HomeIcon />
+        <Cog />
         <div>
           {/* {id} */}
-          <Button text={"Delete Card"} onClick={handleDeleteCard} />
 
           {cardToChange ? (
             <Card
@@ -105,6 +108,7 @@ const CardId = () => {
           handleChanges={handleChanges}
           handleInputChange={handleInputChange}
         />
+        <Button text={"Delete Card"} onClick={handleDeleteCard} />
       </main>
     </Wrapper>
   );

@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import CardContainer from "@/components/CardContainer";
 import Cog from "@/components/Cog";
+import HomeIcon from "@/components/HomeIcon";
 import Wrapper from "@/components/Wrapper";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -22,15 +23,16 @@ export default function Home() {
       >
         <div className={"flex flex-col justify-start grow overflow-auto"}>
           <Cog />
+          <HomeIcon />
 
           <div>
-            <h4 className={"text-start font-bold text-gray-700"}>
+            <h4 className={"text-center font-bold text-gray-700"}>
               Active Cards
             </h4>
             <CardContainer cards={activeCards} />
           </div>
           <div className={"mt-4"}>
-            <h4 className={"text-start font-bold text-gray-700"}>
+            <h4 className={"text-center font-bold text-gray-700"}>
               Inactive Cards
             </h4>
             <CardContainer cards={inActiveCards} />

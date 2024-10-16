@@ -59,14 +59,21 @@ export const creditCardSlice = createSlice({
       localStorage.setItem("cards", JSON.stringify(state.cards));
       // routeHome();
     },
-    deleteAll: (state) => {
-      state.cards = [];
+
+    deleteAllInActive: (state) => {
+      state.cards = state.cards.filter((card) => card.active); //Behållar bara activa kort
       localStorage.setItem("cards", JSON.stringify(state.cards));
+      //Filtrerar listan och släpper bara in card som är true
     },
   },
 });
 
-export const { addCard, editCard, toggleStatus, deleteCard, deleteAll } =
-  creditCardSlice.actions;
+export const {
+  addCard,
+  editCard,
+  toggleStatus,
+  deleteCard,
+  deleteAllInActive,
+} = creditCardSlice.actions;
 
 export default creditCardSlice.reducer;

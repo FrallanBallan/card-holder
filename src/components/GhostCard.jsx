@@ -3,7 +3,7 @@ import React from "react";
 const GhostCard = () => {
   return (
     <>
-      <div className="w-full max-w-sm h-[150px] bg-gradient-to-r from-gray-300 to-gray-500 rounded-lg shadow-lg flex flex-col justify-between p-6 opacity-70">
+      <div className="w-full max-w-sm h-[200px] bg-gradient-to-r from-gray-300 to-gray-500 rounded-lg shadow-lg flex flex-col justify-between p-6 opacity-70">
         <div className="flex items-center justify-between">
           <i className="text-2xl opacity-50">⚔️</i>{" "}
           <h5 className="text-lg font-semibold opacity-50">Placeholder</h5>{" "}
