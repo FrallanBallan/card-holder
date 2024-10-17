@@ -101,14 +101,17 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
           </select>
         </div>
         <div>
-          <button
-            type="submit"
-            className={
-              "w-full bg-slate-400 hover:bg-slate-500 text-black-700 font-semibold hover:text-white py-2 px-4 border border-slate-500 hover:border-transparent rounded  "
-            }
-          >
-            Complete Card
-          </button>
+          {!editedCard.active && (
+            <button
+              type="submit"
+              className={
+                "w-full bg-slate-400 hover:bg-slate-500 text-black-700 font-semibold hover:text-white py-2 px-4 border border-slate-500 hover:border-transparent rounded  "
+              }
+            >
+              Complete Card
+            </button>
+          )}
+
           <button
             onClick={handleStatus}
             className={
@@ -116,7 +119,7 @@ const Form = ({ editedCard, handleChanges, handleInputChange }) => {
             }
           >
             {" "}
-            {editedCard.active ? "Freeze Card" : "Activate Card"}
+            {editedCard.active ? "Deactivate Card" : "Activate Card"}
           </button>
         </div>
       </form>

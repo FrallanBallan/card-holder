@@ -85,7 +85,7 @@ const CardId = () => {
     <Wrapper>
       <main
         className={
-          "relative text-center h-[80vh] max-h-[894px] w-[90vw] max-w-[400px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
+          "relative text-center responsive-height max-h-[894px] w-[90vw] max-w-[400px] bg-white bg-opacity-30 p-8 rounded-2xl shadow-lg flex flex-col justify-between border border-white border-opacity-20 backdrop-blur-md transition-all duration-100 ease-in-out overflow-hidden"
         }
       >
         <HomeIcon />
@@ -108,7 +108,9 @@ const CardId = () => {
           handleChanges={handleChanges}
           handleInputChange={handleInputChange}
         />
-        <Button text={"Delete Card"} onClick={handleDeleteCard} />
+        {!editedCard.active && (
+          <Button text={"Delete Card"} onClick={handleDeleteCard} />
+        )}
       </main>
     </Wrapper>
   );
